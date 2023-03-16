@@ -3,13 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import UserManagerProvider from './services/userManager/UserManagerProvider';
+import BikeManagerProvider from './services/bikeManager/BikeManagerProvider';
+import ReservationManagerProvider from './services/reservationManager/ReservationManagerProvider';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <UserManagerProvider>
+        <BikeManagerProvider>
+          <ReservationManagerProvider>
+            <App />
+          </ReservationManagerProvider>
+        </BikeManagerProvider>
+      </UserManagerProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
