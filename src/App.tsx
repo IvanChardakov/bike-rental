@@ -13,6 +13,7 @@ import Navigations from './components/Navigations';
 import { CURRENT_USER_KEY } from './utils/constants';
 import ManagerDashboard from './pages/ManagerDashboard';
 import UserReservations from './pages/UserReservations';
+import UserBikeReservations from './pages/UserBikeReservations';
 
 function App() {
   const currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY) || 'null');
@@ -58,16 +59,21 @@ function App() {
                 </RequireAuth>
               }
             />
-            <Route
-              path="/users"
-              element={
-                <RequireAuth>
-                  <RequireRole role="manager">
-                    <Users />
-                  </RequireRole>
-                </RequireAuth>
-              }
-            />
+            <Route path="/users">
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <RequireRole role="manager">
+                      <Users />
+                    </RequireRole>
+                  </RequireAuth>
+                }
+              />
+              <Route path=":userId">
+                <Route path="bike-reservations" element={<UserBikeReservations />} />
+              </Route>
+            </Route>
           </Route>
 
           <Route path="*" element={<NotFound />} />

@@ -10,6 +10,7 @@ const ColorDiv = styled.div<{ color: string }>`
   height: 15px;
   border-radius: 50%;
   background-color: ${({ color }) => color};
+  display: inline-block;
 `;
 
 function Color({ color }: ColorProps) {

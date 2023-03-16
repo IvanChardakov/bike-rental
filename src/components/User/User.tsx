@@ -1,12 +1,12 @@
-import { useContext, useState, useMemo, useCallback } from 'react';
+import { useContext, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 
 import TData from '../Table/TData';
 import Button from '../common/Button';
 import { IUser } from '../../types/user';
-import UserManagerContext from '../../services/userManager/UserManagerContext';
 import UserEditModal from './UserEditModal';
 import UserReservationsModal from './UserReservationsModal';
+import UserManagerContext from '../../services/userManager/UserManagerContext';
 
 const DeleteButton = styled(Button)`
   background-color: rgb(185 28 28);

@@ -9,6 +9,11 @@ export interface IBike {
   isAvailable: boolean;
 }
 
+export interface BikeWithDates extends IBike {
+  fromDate?: Date;
+  toDate?: Date;
+}
+
 export interface BikeFilterOptions {
   model?: string;
   color?: string;
