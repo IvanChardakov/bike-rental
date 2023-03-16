@@ -4,9 +4,11 @@ import BikeFilters from '../components/Bike/BikeFilters';
 
 import BikeManagerContext from '../services/bikeManager/BikeManagerContext';
 import { BikeFilterOptions, IBike } from '../types/bike';
+import ReservationManagerContext from '../services/reservationManager/ReservationManagerContext';
 
 function UserDashboard() {
-  const { filterBikes, bikes } = useContext(BikeManagerContext);
+  const { bikes, filterBikes, isBikeAvailable } = useContext(BikeManagerContext);
+  const { getReservationByBikeId } = useContext(ReservationManagerContext);
 
   const [filteredBikes, setFilteredBikes] = useState<IBike[]>(bikes);
 
@@ -20,10 +22,22 @@ function UserDashboard() {
         }
       });
 
-      const bikesAfterFilter = filterBikes(filters);
+      let bikesAfterFilter = filterBikes(filters);
+
+      if (filterOptions.fromDate || filterOptions.toDate) {
+        const formDate = filterOptions.fromDate && new Date(filterOptions.fromDate);
+        const toDate = filterOptions.toDate && new Date(filterOptions.toDate);
+
+        bikesAfterFilter = bikesAfterFilter.map((bike: IBike) => {
+          const reservations = getReservationByBikeId(bike.id) || [];
+          const isAvailable = isBikeAvailable(formDate, toDate, reservations);
+          return { ...bike, isAvailable };
+        });
+      }
+
       setFilteredBikes(bikesAfterFilter);
     },
-    [filterBikes]
+    [filterBikes, getReservationByBikeId, isBikeAvailable]
   );
 
   return (

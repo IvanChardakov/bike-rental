@@ -10,6 +10,10 @@ const StyledButton = styled.button`
   :hover {
     background: #296972;
   }
+  :disabled {
+    cursor: not-allowed;
+    background: rgb(56 148 161 / 50%);
+  }
 `;
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

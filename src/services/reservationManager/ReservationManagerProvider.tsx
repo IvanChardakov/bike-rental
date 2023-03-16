@@ -5,16 +5,13 @@ import ReservationManagerContext from './ReservationManagerContext';
 
 const ReservationManagerProvider = ({ children }: { children: React.ReactNode }) => {
   const [reservations, setReservations] = useState<IReservation[]>([]);
-  console.log({ reservations });
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_RESERVATIONS_KEY, JSON.stringify(reservations));
   }, [reservations]);
 
   const createReservation = (reservation: Omit<IReservation, 'id'>) => {
-    console.log(123);
     const newId = reservations?.length === 0 ? 0 : Math.max(...reservations.map((r) => r.id)) + 1;
-    console.log({ reservation, newId });
     setReservations((prev) => [...prev, { ...reservation, id: newId || 0 }]);
   };
 

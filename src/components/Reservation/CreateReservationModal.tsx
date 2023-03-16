@@ -10,6 +10,7 @@ import ReservationManagerContext from '../../services/reservationManager/Reserva
 
 interface CreateReservationProps {
   bikeId: number;
+  disableButton: boolean;
 }
 
 const ReserveWrapper = styled.div`
@@ -21,8 +22,8 @@ const ReserveWrapper = styled.div`
   width: 90px;
 `;
 
-function CreateReservationModal({ bikeId }: CreateReservationProps) {
-  const { createReservation, reservations } = useContext(ReservationManagerContext);
+function CreateReservationModal({ bikeId, disableButton }: CreateReservationProps) {
+  const { createReservation } = useContext(ReservationManagerContext);
 
   const { currentUser } = useContext(UserManagerContext);
 
@@ -43,7 +44,7 @@ function CreateReservationModal({ bikeId }: CreateReservationProps) {
 
   return (
     <ReserveWrapper>
-      <Button type="button" onClick={openModal} buttonText="Reserve" />
+      <Button type="button" onClick={openModal} buttonText="Reserve" disabled={!disableButton} />
       <Modal isOpen={isOpen} onRequestClose={closeModal} className="max-w-md mx-auto">
         <ReservationForm onSubmit={onSubmit} formTitle="New reservation" submitText="Reserve" />
       </Modal>

@@ -13,8 +13,6 @@ function UserList() {
   const { users, createUser } = useContext(UserManagerContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log({ users });
-
   function openModal() {
     setIsOpen(true);
   }

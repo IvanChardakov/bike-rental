@@ -1,3 +1,5 @@
+import { IReservation } from './reservations';
+
 export interface IBike {
   id: number;
   model: string;
@@ -12,6 +14,8 @@ export interface BikeFilterOptions {
   color?: string;
   location?: string;
   minRating?: number;
+  fromDate?: Date;
+  toDate?: Date;
 }
 
 export type BikeManagerType = {
@@ -22,4 +26,9 @@ export type BikeManagerType = {
   getBikeById: (id: number) => IBike | undefined;
   getAvailableBikes: () => IBike[];
   filterBikes: (filterOptions: BikeFilterOptions) => IBike[];
+  isBikeAvailable: (
+    fromDate: Date | undefined,
+    toDate: Date | undefined,
+    reservations: IReservation[]
+  ) => boolean;
 };

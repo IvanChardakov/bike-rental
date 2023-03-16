@@ -3,6 +3,7 @@ import BikeManagerContext from './BikeManagerContext';
 import { IBike, BikeManagerType, BikeFilterOptions } from '../../types/bike';
 import { initialBikes } from '../../mockData/initialBikes';
 import { LOCAL_STORAGE_BIKES_KEY } from '../../utils/constants';
+import { IReservation } from '../../types/reservations';
 
 const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
   const [bikes, setBikes] = useState<IBike[]>(
@@ -37,6 +38,45 @@ const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
     return bikes.filter((b) => b.isAvailable);
   };
 
+  function isBikeAvailable(
+    fromDate: Date | undefined,
+    toDate: Date | undefined,
+    reservations: IReservation[]
+  ): boolean {
+    if (!reservations || reservations.length === 0) {
+      return true;
+    }
+
+    if (!fromDate && !toDate) {
+      return true;
+    }
+
+    if (fromDate && toDate) {
+      const rangeAvailable = !reservations.find((reservation) => {
+        return new Date(reservation.fromDate) <= toDate && new Date(reservation.toDate) >= fromDate;
+      });
+      if (!rangeAvailable) {
+        return false;
+      }
+    }
+
+    const selectedDate = fromDate || toDate;
+
+    if (selectedDate) {
+      const selectedDateAvailable = !reservations.find((reservation) => {
+        return (
+          new Date(reservation.fromDate) <= selectedDate &&
+          new Date(reservation.toDate) >= selectedDate
+        );
+      });
+      if (!selectedDateAvailable) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   const filterBikes = (filterOptions: BikeFilterOptions): IBike[] => {
     let filteredBikes = bikes;
 
@@ -69,6 +109,7 @@ const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
     getBikeById,
     getAvailableBikes,
     filterBikes,
+    isBikeAvailable,
   };
 
   return <BikeManagerContext.Provider value={contextValue}>{children}</BikeManagerContext.Provider>;

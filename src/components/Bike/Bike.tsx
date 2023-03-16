@@ -116,7 +116,7 @@ function Bike({ id, model, color, location, rating, isAvailable }: IBike) {
           </FlexDiv>
           <Color color={color} />
         </FlexDiv>
-        <CreateReservationModal bikeId={id} />
+        <CreateReservationModal bikeId={id} disableButton={isAvailable} />
       </BikeFooter>
     </BikeWrapper>
   );
