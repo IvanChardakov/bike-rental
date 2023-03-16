@@ -4,6 +4,7 @@ export interface IReservation {
   bikeId: number | undefined;
   fromDate: Date;
   toDate: Date;
+  isCancelled: boolean;
 }
 
 export type ReservationManagerType = {

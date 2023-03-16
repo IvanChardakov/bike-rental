@@ -38,7 +38,7 @@ function CreateReservationModal({ bikeId, disableButton }: CreateReservationProp
   }
 
   const onSubmit = (data: ReservationFormData) => {
-    createReservation({ ...data, userId: currentUser?.id, bikeId });
+    createReservation({ ...data, userId: currentUser?.id, bikeId, isCancelled: false });
     closeModal();
   };
 
