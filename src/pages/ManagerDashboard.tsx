@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import BikesList from '../components/Bike/BikesList';
+import BikeCreateModal from '../components/Bike/BikeCreateModal';
 import BikeTable from '../components/Bike/BikeTable';
 import BikeManagerContext from '../services/bikeManager/BikeManagerContext';
 
@@ -8,7 +8,13 @@ function ManagerDashboard() {
 
   return (
     <>
-      <BikesList bikes={bikes} />
+      <div className="flex justify-between items-center">
+        <h2>
+          <b>Bike list</b>
+        </h2>
+        <BikeCreateModal />
+      </div>
+
       <BikeTable bikes={bikes} />
     </>
   );

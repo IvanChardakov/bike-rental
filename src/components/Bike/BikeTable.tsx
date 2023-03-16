@@ -9,6 +9,7 @@ import Button from '../common/Button';
 import BikeEditModal from './BikeEditModal';
 import { BikeWithDates } from '../../types/bike';
 import BikeManagerContext from '../../services/bikeManager/BikeManagerContext';
+import { Link } from 'react-router-dom';
 
 const DeleteButton = styled(Button)`
   background-color: rgb(185 28 28);
@@ -92,6 +93,13 @@ function BikeTable({ bikes }: BikeListProps) {
                           buttonText="Delete"
                           className="ml-2"
                         />
+
+                        <Link
+                          to={`/bikes/${bike.id}/user-reservations`}
+                          className="ml-2 text-blue-500"
+                        >
+                          Bike reservations
+                        </Link>
                       </>
                     }
                   />

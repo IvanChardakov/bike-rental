@@ -5,6 +5,11 @@ export interface IUser {
   role: 'user' | 'manager';
 }
 
+export interface UserWithDates extends IUser {
+  fromDate?: Date;
+  toDate?: Date;
+}
+
 export type UserManagerType = {
   users: IUser[];
   currentUser: IUser | undefined;

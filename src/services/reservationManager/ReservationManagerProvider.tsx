@@ -4,7 +4,9 @@ import { LOCAL_STORAGE_RESERVATIONS_KEY } from '../../utils/constants';
 import ReservationManagerContext from './ReservationManagerContext';
 
 const ReservationManagerProvider = ({ children }: { children: React.ReactNode }) => {
-  const [reservations, setReservations] = useState<IReservation[]>([]);
+  const [reservations, setReservations] = useState<IReservation[]>(
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_RESERVATIONS_KEY) || JSON.stringify([]))
+  );
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_RESERVATIONS_KEY, JSON.stringify(reservations));

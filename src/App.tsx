@@ -14,6 +14,7 @@ import { CURRENT_USER_KEY } from './utils/constants';
 import ManagerDashboard from './pages/ManagerDashboard';
 import UserReservations from './pages/UserReservations';
 import UserBikeReservations from './pages/UserBikeReservations';
+import BikeUserReservations from './pages/BikeUserReservations';
 
 function App() {
   const currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY) || 'null');
@@ -72,6 +73,11 @@ function App() {
               />
               <Route path=":userId">
                 <Route path="bike-reservations" element={<UserBikeReservations />} />
+              </Route>
+            </Route>
+            <Route path="/bikes">
+              <Route path=":bikeId">
+                <Route path="user-reservations" element={<BikeUserReservations />} />
               </Route>
             </Route>
           </Route>

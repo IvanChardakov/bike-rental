@@ -1,10 +1,11 @@
 import React, { useContext, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import ReservationManagerContext from '../services/reservationManager/ReservationManagerContext';
+
+import { IBike } from '../types/bike';
+import BikeTable from '../components/Bike/BikeTable';
 import UserManagerContext from '../services/userManager/UserManagerContext';
 import BikeManagerContext from '../services/bikeManager/BikeManagerContext';
-import BikeTable from '../components/Bike/BikeTable';
-import { IBike } from '../types/bike';
+import ReservationManagerContext from '../services/reservationManager/ReservationManagerContext';
 
 function UserBikeReservations() {
   const { userId } = useParams();
@@ -38,8 +39,6 @@ function UserBikeReservations() {
 
     return reservationBikes;
   }, [getBikeById, userReservations]);
-
-  console.log({ userReservations, user, bikes });
 
   if (!user) {
     return <div>There is no user with this id</div>;

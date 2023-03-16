@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 import TData from '../Table/TData';
 import Button from '../common/Button';
-import { IUser } from '../../types/user';
+import { IUser, UserWithDates } from '../../types/user';
 import UserEditModal from './UserEditModal';
-import UserReservationsModal from './UserReservationsModal';
 import UserManagerContext from '../../services/userManager/UserManagerContext';
+import { Link } from 'react-router-dom';
 
 const DeleteButton = styled(Button)`
   background-color: rgb(185 28 28);
@@ -15,8 +15,10 @@ const DeleteButton = styled(Button)`
   }
 `;
 
-function User({ user }: { user: IUser }) {
+function User({ user }: { user: UserWithDates }) {
   const { deleteUser, currentUser } = useContext(UserManagerContext);
+
+  const showDatePeriod = user?.fromDate && user?.toDate;
 
   const onDeleteUser = useCallback(() => {
     if (user.id === currentUser?.id) {
@@ -32,15 +34,17 @@ function User({ user }: { user: IUser }) {
     () => (
       <>
         <UserEditModal user={user} />
-        <span className="ml-2">
-          <UserReservationsModal user={user} />
-        </span>
         <DeleteButton
           type="button"
           onClick={() => onDeleteUser()}
           buttonText="Delete"
           className="ml-2"
         />
+        {user.role === 'user' ? (
+          <Link to={`/users/${user.id}/bike-reservations`} className="ml-2 text-blue-500">
+            Bike reservations
+          </Link>
+        ) : null}
       </>
     ),
     [onDeleteUser, user]
@@ -51,8 +55,18 @@ function User({ user }: { user: IUser }) {
       <TData data={user.id} />
       <TData data={user.email} />
       <TData data={'*'.repeat(user.password.length)} />
-      <TData data={user.role} />
-      <TData data={actionButtons} />
+      {showDatePeriod ? (
+        <TData
+          data={
+            <>
+              From: {user.fromDate} / To: {user.toDate}
+            </>
+          }
+        />
+      ) : null}
+
+      {showDatePeriod ? null : <TData data={user.role} />}
+      {showDatePeriod ? null : <TData data={actionButtons} />}
     </tr>
   );
 }

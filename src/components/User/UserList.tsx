@@ -1,55 +1,51 @@
-import React, { useState, useContext } from 'react';
-import Modal from 'react-modal';
+import { useMemo } from 'react';
 
 import User from './User';
-import UserForm from './UserForm';
 
-import { IUser } from '../../types/user';
-import UserManagerContext from '../../services/userManager/UserManagerContext';
 import Table from '../Table/Table';
 import THead from '../Table/THead';
+import UserCreateModal from './UserCreateModal';
+import { IUser, UserWithDates } from '../../types/user';
 
-function UserList() {
-  const { users, createUser } = useContext(UserManagerContext);
-  const [isOpen, setIsOpen] = useState(false);
+interface UserListProps {
+  users: UserWithDates[];
+}
 
-  function openModal() {
-    setIsOpen(true);
-  }
+function UserList({ users }: UserListProps) {
+  const showDatePeriod = useMemo(() => {
+    if (!users || users.length === 0) return false;
 
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  const onSubmit = (data: Omit<IUser, 'id'>) => {
-    createUser(data);
-    closeModal();
-  };
+    return !!(users[0].fromDate && users[0].toDate);
+  }, [users]);
 
   return (
     <div>
-      <h3>User list</h3>
-      <button type="button" onClick={openModal}>
-        Create user
-      </button>
-      <Modal isOpen={isOpen} onRequestClose={closeModal} className="max-w-md mx-auto">
-        <UserForm onSubmit={onSubmit} />
-      </Modal>
+      <div className="flex justify-between items-center">
+        <h2>
+          <b>User list</b>
+        </h2>
+        <UserCreateModal />
+      </div>
 
-      <Table>
-        <thead>
-          <THead title="id" />
-          <THead title="email" />
-          <THead title="password" />
-          <THead title="role" />
-          <THead title="actions" />
-        </thead>
-        <tbody>
-          {users.map((user: IUser) => (
-            <User user={user} />
-          ))}
-        </tbody>
-      </Table>
+      <div className="bg-white mx-auto p-6 bg-white">
+        <Table>
+          <thead>
+            <tr>
+              <THead title="id" />
+              <THead title="email" />
+              <THead title="password" />
+              {showDatePeriod ? <THead title="Reservation period" /> : null}
+              {showDatePeriod ? null : <THead title="role" />}
+              {showDatePeriod ? null : <THead title="actions" />}
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user: IUser) => (
+              <User user={user} key={user.id} />
+            ))}
+          </tbody>
+        </Table>
+      </div>
     </div>
   );
 }
