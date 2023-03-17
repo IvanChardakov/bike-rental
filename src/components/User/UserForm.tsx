@@ -4,9 +4,8 @@ import { useForm } from 'react-hook-form';
 import Input from '../Form/Input';
 import Select from '../Form/Select';
 import Button from '../common/Button';
-import StyledForm from '../Form/StyledForm';
-
 import { IUser } from '../../types/user';
+import StyledForm from '../Form/StyledForm';
 import { messages } from '../../utils/messages';
 import { EMAIL_PATTERN } from '../../utils/constants';
 

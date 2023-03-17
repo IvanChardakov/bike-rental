@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import BikeCreateModal from '../components/Bike/BikeCreateModal';
 import BikeTable from '../components/Bike/BikeTable';
+import BikeCreateModal from '../components/Bike/BikeCreateModal';
 import BikeManagerContext from '../services/bikeManager/BikeManagerContext';
 
 function ManagerDashboard() {

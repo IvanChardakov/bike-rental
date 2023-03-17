@@ -1,15 +1,15 @@
 import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { messages } from '../utils/messages';
 import Input from '../components/Form/Input';
 import Error from '../components/Form/Error';
+import Button from '../components/common/Button';
 import { LoginFormData } from '../types/formData';
 import { EMAIL_PATTERN } from '../utils/constants';
 import StyledForm from '../components/Form/StyledForm';
 import UserManagerContext from '../services/userManager/UserManagerContext';
-import Button from '../components/common/Button';
 
 function Login() {
   const { login } = useContext(UserManagerContext);

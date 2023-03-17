@@ -1,9 +1,9 @@
 import React, { useContext, useState, useCallback } from 'react';
+
 import BikesList from '../components/Bike/BikesList';
 import BikeFilters from '../components/Bike/BikeFilters';
-
-import BikeManagerContext from '../services/bikeManager/BikeManagerContext';
 import { BikeFilterOptions, IBike } from '../types/bike';
+import BikeManagerContext from '../services/bikeManager/BikeManagerContext';
 import ReservationManagerContext from '../services/reservationManager/ReservationManagerContext';
 
 function UserDashboard() {

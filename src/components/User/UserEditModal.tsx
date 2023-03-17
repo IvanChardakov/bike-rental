@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
 import Modal from 'react-modal';
-import UserManagerContext from '../../services/userManager/UserManagerContext';
-import { IUser } from '../../types/user';
 
-import Button from '../common/Button';
 import UserForm from './UserForm';
+import Button from '../common/Button';
+import { IUser } from '../../types/user';
+import UserManagerContext from '../../services/userManager/UserManagerContext';
 
 function UserEditModal({ user }: { user: IUser }) {
   const { updateUser } = useContext(UserManagerContext);

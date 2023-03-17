@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { IReservation, ReservationManagerType } from '../../types/reservations';
-import { LOCAL_STORAGE_RESERVATIONS_KEY } from '../../utils/constants';
 import ReservationManagerContext from './ReservationManagerContext';
+import { LOCAL_STORAGE_RESERVATIONS_KEY } from '../../utils/constants';
+import { IReservation, ReservationManagerType } from '../../types/reservations';
 
 const ReservationManagerProvider = ({ children }: { children: React.ReactNode }) => {
   const [reservations, setReservations] = useState<IReservation[]>(

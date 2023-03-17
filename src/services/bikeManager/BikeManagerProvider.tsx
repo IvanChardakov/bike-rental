@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
+import { getAverage } from '../../utils/functionts';
 import BikeManagerContext from './BikeManagerContext';
-import { IBike, BikeManagerType, BikeFilterOptions } from '../../types/bike';
+import { IReservation } from '../../types/reservations';
 import { initialBikes } from '../../mockData/initialBikes';
 import { LOCAL_STORAGE_BIKES_KEY } from '../../utils/constants';
-import { IReservation } from '../../types/reservations';
-import { getAverage } from '../../utils/functionts';
+import { IBike, BikeManagerType, BikeFilterOptions } from '../../types/bike';
 
 const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
   const [bikes, setBikes] = useState<IBike[]>(

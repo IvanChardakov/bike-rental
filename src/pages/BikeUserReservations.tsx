@@ -1,11 +1,11 @@
 import { useContext, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { IUser } from '../types/user';
+import UserList from '../components/User/UserList';
 import UserManagerContext from '../services/userManager/UserManagerContext';
 import BikeManagerContext from '../services/bikeManager/BikeManagerContext';
 import ReservationManagerContext from '../services/reservationManager/ReservationManagerContext';
-import { IUser } from '../types/user';
-import UserList from '../components/User/UserList';
 
 function BikeUserReservations() {
   const { bikeId } = useParams();

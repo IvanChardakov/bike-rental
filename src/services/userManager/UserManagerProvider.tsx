@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { initialUsers } from '../../mockData/initialUsers';
-import { UserManagerType, IUser } from '../../types/user';
-import { CURRENT_USER_KEY, LOCAL_STORAGE_USERS_KEY } from '../../utils/constants';
+import React, { useEffect, useState } from 'react';
+
 import { messages } from '../../utils/messages';
 import UserManagerContext from './UserManagerContext';
+import { UserManagerType, IUser } from '../../types/user';
+import { initialUsers } from '../../mockData/initialUsers';
+import { CURRENT_USER_KEY, LOCAL_STORAGE_USERS_KEY } from '../../utils/constants';
 
 const UserManagerProvider = ({ children }: { children: React.ReactNode }) => {
   const [users, setUsers] = useState<IUser[]>(

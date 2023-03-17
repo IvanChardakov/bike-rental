@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import TData from '../Table/TData';
 import Button from '../common/Button';
-import { IUser, UserWithDates } from '../../types/user';
+import { UserWithDates } from '../../types/user';
 import UserEditModal from './UserEditModal';
 import UserManagerContext from '../../services/userManager/UserManagerContext';
 import { Link } from 'react-router-dom';

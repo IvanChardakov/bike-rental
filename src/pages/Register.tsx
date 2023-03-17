@@ -5,11 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { messages } from '../utils/messages';
 import Input from '../components/Form/Input';
 import Error from '../components/Form/Error';
+import Button from '../components/common/Button';
 import { EMAIL_PATTERN } from '../utils/constants';
 import { RegisterFormData } from '../types/formData';
 import StyledForm from '../components/Form/StyledForm';
 import UserManagerContext from '../services/userManager/UserManagerContext';
-import Button from '../components/common/Button';
 
 function Register() {
   const { createUser } = useContext(UserManagerContext);

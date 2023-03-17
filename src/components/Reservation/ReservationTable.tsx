@@ -8,8 +8,8 @@ import { IUser } from '../../types/user';
 import BikeRateModal from '../Bike/BikeRateModal';
 import { IReservation } from '../../types/reservations';
 import UserManagerContext from '../../services/userManager/UserManagerContext';
-import ReservationManagerContext from '../../services/reservationManager/ReservationManagerContext';
 import BikeManagerContext from '../../services/bikeManager/BikeManagerContext';
+import ReservationManagerContext from '../../services/reservationManager/ReservationManagerContext';
 
 function ReservationTable({ user }: { user: IUser | undefined }) {
   const { currentUser } = useContext(UserManagerContext);

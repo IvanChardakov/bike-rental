@@ -2,9 +2,9 @@ import { useContext, useState } from 'react';
 import Modal from 'react-modal';
 
 import UserForm from './UserForm';
+import Button from '../common/Button';
 import { IUser } from '../../types/user';
 import UserManagerContext from '../../services/userManager/UserManagerContext';
-import Button from '../common/Button';
 
 function UserCreateModal() {
   const { createUser } = useContext(UserManagerContext);

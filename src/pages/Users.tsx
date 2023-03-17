@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import UserCreateModal from '../components/User/UserCreateModal';
 import UserList from '../components/User/UserList';
+import UserCreateModal from '../components/User/UserCreateModal';
 import UserManagerContext from '../services/userManager/UserManagerContext';
 
 function Users() {

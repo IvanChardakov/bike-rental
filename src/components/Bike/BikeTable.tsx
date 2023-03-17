@@ -1,5 +1,6 @@
 import { useContext, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import Table from '../Table/Table';
 import TData from '../Table/TData';
@@ -9,7 +10,6 @@ import Button from '../common/Button';
 import BikeEditModal from './BikeEditModal';
 import { BikeWithDates } from '../../types/bike';
 import BikeManagerContext from '../../services/bikeManager/BikeManagerContext';
-import { Link } from 'react-router-dom';
 
 const DeleteButton = styled(Button)`
   background-color: rgb(185 28 28);
