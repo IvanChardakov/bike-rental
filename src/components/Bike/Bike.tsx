@@ -53,7 +53,7 @@ function Bike({ id, model, color, location, rating, isAvailable }: IBike) {
         </div>
         <FlexDiv>
           <FlexDiv className="mr-4">
-            <Star className="mr-1 text-yellow-500" fontSize="small" /> {rating}
+            <Star className="mr-1 text-yellow-500" fontSize="small" /> {rating.toFixed(2)}
           </FlexDiv>
           <Color color={color} />
         </FlexDiv>

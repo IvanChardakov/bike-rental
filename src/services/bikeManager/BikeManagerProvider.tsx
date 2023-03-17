@@ -4,6 +4,7 @@ import { IBike, BikeManagerType, BikeFilterOptions } from '../../types/bike';
 import { initialBikes } from '../../mockData/initialBikes';
 import { LOCAL_STORAGE_BIKES_KEY } from '../../utils/constants';
 import { IReservation } from '../../types/reservations';
+import { getAverage } from '../../utils/functionts';
 
 const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
   const [bikes, setBikes] = useState<IBike[]>(
@@ -14,9 +15,9 @@ const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem(LOCAL_STORAGE_BIKES_KEY, JSON.stringify(bikes));
   }, [bikes]);
 
-  const createBike = (bike: Omit<IBike, 'id'>) => {
+  const createBike = (bike: Omit<IBike, 'id' | 'userRatings'>) => {
     const newId = bikes?.length === 0 ? 0 : Math.max(...bikes.map((b) => b.id)) + 1;
-    setBikes((prev) => [...prev, { ...bike, id: newId }]);
+    setBikes((prev) => [...prev, { ...bike, id: newId, userRatings: [] }]);
   };
 
   const updateBike = (bike: IBike) => {
@@ -101,6 +102,29 @@ const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
     return filteredBikes;
   };
 
+  const addUserRating = (bikeId: number, userId: number, rating: number) => {
+    const bike = getBikeById(bikeId);
+
+    if (bike) {
+      bike.userRatings = bike.userRatings || [];
+      const existingUserRating = bike.userRatings.find((rate) => rate.userId === userId);
+
+      if (existingUserRating) {
+        const updatedRatings = bike.userRatings.map((rate) =>
+          rate.userId === userId ? { userId, rating } : rate
+        );
+        bike.userRatings = updatedRatings;
+      } else {
+        bike.userRatings.push({ userId, rating });
+      }
+
+      const bikeRatings = bike?.userRatings.map((rate) => rate.rating) || [];
+      const avgRating = getAverage(bikeRatings);
+      bike.rating = avgRating;
+      updateBike(bike);
+    }
+  };
+
   const contextValue: BikeManagerType = {
     bikes,
     createBike,
@@ -110,6 +134,7 @@ const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
     getAvailableBikes,
     filterBikes,
     isBikeAvailable,
+    addUserRating,
   };
 
   return <BikeManagerContext.Provider value={contextValue}>{children}</BikeManagerContext.Provider>;

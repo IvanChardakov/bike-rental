@@ -1,11 +1,17 @@
 import { IReservation } from './reservations';
 
+interface UserRating {
+  userId: number;
+  rating: number;
+}
+
 export interface IBike {
   id: number;
   model: string;
   color: string;
   location: string;
   rating: number;
+  userRatings?: UserRating[];
   isAvailable: boolean;
 }
 
@@ -25,8 +31,8 @@ export interface BikeFilterOptions {
 
 export type BikeManagerType = {
   bikes: IBike[];
-  createBike: (bike: Omit<IBike, 'id'>) => void;
-  updateBike: (bike: IBike) => void;
+  createBike: (bike: Omit<IBike, 'id' | 'userRatings'>) => void;
+  updateBike: (bike: Omit<IBike, 'userRatings'>) => void;
   deleteBike: (id: number) => void;
   getBikeById: (id: number) => IBike | undefined;
   getAvailableBikes: () => IBike[];
@@ -36,4 +42,5 @@ export type BikeManagerType = {
     toDate: Date | undefined,
     reservations: IReservation[]
   ) => boolean;
+  addUserRating: (bikeId: number, userId: number, rating: number) => void;
 };

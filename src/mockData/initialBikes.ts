@@ -6,7 +6,8 @@ export const initialBikes: IBike[] = [
     model: 'Cross',
     color: 'green',
     location: 'Plovdiv',
-    rating: 4.2,
+    rating: 4.5,
+    userRatings: [{ userId: 1, rating: 5 }],
     isAvailable: true,
   },
   {
@@ -14,7 +15,8 @@ export const initialBikes: IBike[] = [
     model: 'Leader',
     color: 'black',
     location: 'Sofia',
-    rating: 2.2,
+    rating: 3.2,
+    userRatings: [{ userId: 1, rating: 3 }],
     isAvailable: true,
   },
 ];

@@ -8,6 +8,7 @@ import { IUser } from '../../types/user';
 import { IReservation } from '../../types/reservations';
 import UserManagerContext from '../../services/userManager/UserManagerContext';
 import ReservationManagerContext from '../../services/reservationManager/ReservationManagerContext';
+import BikeRateModal from '../Bike/BikeRateModal';
 
 function ReservationTable({ user }: { user: IUser | undefined }) {
   const { currentUser } = useContext(UserManagerContext);
@@ -47,13 +48,16 @@ function ReservationTable({ user }: { user: IUser | undefined }) {
                 {user?.id === currentUser?.id ? (
                   <TData
                     data={
-                      <Button
-                        type="button"
-                        onClick={() => updateReservation({ ...res, isCancelled: true })}
-                        buttonText="Cancel reservation"
-                        className="ml-2"
-                        disabled={res.isCancelled}
-                      />
+                      <>
+                        <Button
+                          type="button"
+                          onClick={() => updateReservation({ ...res, isCancelled: true })}
+                          buttonText="Cancel reservation"
+                          className="ml-2 mr-2"
+                          disabled={res.isCancelled}
+                        />
+                        <BikeRateModal bikeId={res.bikeId} disabled={res.isCancelled} />
+                      </>
                     }
                   />
                 ) : null}

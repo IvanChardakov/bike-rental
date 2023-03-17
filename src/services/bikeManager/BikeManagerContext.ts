@@ -10,6 +10,7 @@ const UserManagerContext = createContext<BikeManagerType>({
   getAvailableBikes: () => [],
   filterBikes: () => [],
   isBikeAvailable: () => true,
+  addUserRating: () => {},
 });
 
 export default UserManagerContext;

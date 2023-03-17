@@ -26,7 +26,12 @@ function UserEditModal({ user }: { user: IUser }) {
   return (
     <>
       <Button type="button" onClick={openModal} buttonText="Edit" />
-      <Modal isOpen={isOpen} onRequestClose={closeModal} className="max-w-md mx-auto">
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        className="max-w-md mx-auto"
+        ariaHideApp={false}
+      >
         <UserForm
           onSubmit={onSubmit}
           formTitle="Edit user"

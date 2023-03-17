@@ -25,7 +25,12 @@ function UserCreateModal() {
   return (
     <>
       <Button type="button" onClick={openModal} buttonText=" Create user" />
-      <Modal isOpen={isOpen} onRequestClose={closeModal} className="max-w-md mx-auto">
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        className="max-w-md mx-auto"
+        ariaHideApp={false}
+      >
         <UserForm onSubmit={onSubmit} submitText="Create" />
       </Modal>
     </>

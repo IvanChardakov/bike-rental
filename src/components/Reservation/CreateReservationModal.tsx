@@ -45,7 +45,12 @@ function CreateReservationModal({ bikeId, disableButton }: CreateReservationProp
   return (
     <ReserveWrapper>
       <Button type="button" onClick={openModal} buttonText="Reserve" disabled={!disableButton} />
-      <Modal isOpen={isOpen} onRequestClose={closeModal} className="max-w-md mx-auto">
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        className="max-w-md mx-auto"
+        ariaHideApp={false}
+      >
         <ReservationForm onSubmit={onSubmit} formTitle="New reservation" submitText="Reserve" />
       </Modal>
     </ReserveWrapper>

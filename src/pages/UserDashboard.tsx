@@ -41,7 +41,7 @@ function UserDashboard() {
   );
 
   return (
-    <div className="p-8">
+    <div>
       <BikeFilters onSubmit={onFilterBikes} />
       <BikesList bikes={filteredBikes} />
     </div>

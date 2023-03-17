@@ -66,8 +66,8 @@ function BikeFilters({ onSubmit }: BikeFiltersProps) {
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
       register={register}
-      parentClasses="max-w-full"
-      formClasses="flex justify-between items-center flex-wrap"
+      parentClasses="max-w-full mb-5"
+      formClasses="flex justify-between items-center flex-wrap p-2"
     >
       <Select
         name={'model'}
@@ -84,8 +84,12 @@ function BikeFilters({ onSubmit }: BikeFiltersProps) {
         register={register}
         validation={{ required: messages.required_field }}
         error={errors?.color?.message}
-        renderCustomOptions={(value) => (
-          <option value={value} style={{ backgroundColor: value.toString() }} />
+        renderCustomOptions={(value, index) => (
+          <option
+            key={`${value}-${index}`}
+            value={value}
+            style={{ backgroundColor: value.toString() }}
+          />
         )}
         style={{ backgroundColor: selectedColor }}
       />

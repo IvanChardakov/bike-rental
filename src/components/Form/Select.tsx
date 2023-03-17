@@ -9,7 +9,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   error?: string;
   register?: any;
   validation?: any;
-  renderCustomOptions?: (a: string | number) => JSX.Element;
+  renderCustomOptions?: (a: string | number, i: number) => JSX.Element;
 }
 
 function Select({
@@ -35,13 +35,13 @@ function Select({
         <option disabled selected>
           -- select an option --
         </option>
-        {options.map((o) => {
+        {options.map((o, i) => {
           if (renderCustomOptions) {
-            return renderCustomOptions(o);
+            return renderCustomOptions(o, i);
           }
           return (
-            <option value={o}>
-              <span>{o}</span>
+            <option value={o} key={`${o}-${i}`}>
+              {o}
             </option>
           );
         })}
