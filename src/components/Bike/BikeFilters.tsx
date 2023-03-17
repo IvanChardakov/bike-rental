@@ -57,6 +57,7 @@ function BikeFilters({ onSubmit }: BikeFiltersProps) {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm<IBikeFilters>();
 
   const selectedColor = watch('color');
@@ -122,8 +123,12 @@ function BikeFilters({ onSubmit }: BikeFiltersProps) {
         label="To"
         type="date"
       />
-
-      <Button type="submit" buttonText="Filter" />
+      <div>
+        <Button type="submit" buttonText="Filter" />
+        <button className="text-teal-700 ml-4" onClick={() => reset()}>
+          Reset Filters
+        </button>
+      </div>
     </StyledForm>
   );
 }

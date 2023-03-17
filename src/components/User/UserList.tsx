@@ -4,7 +4,6 @@ import User from './User';
 
 import Table from '../Table/Table';
 import THead from '../Table/THead';
-import UserCreateModal from './UserCreateModal';
 import { IUser, UserWithDates } from '../../types/user';
 
 interface UserListProps {
@@ -20,19 +19,12 @@ function UserList({ users }: UserListProps) {
 
   return (
     <div>
-      <div className="flex justify-between items-center">
-        <h2>
-          <b>User list</b>
-        </h2>
-        <UserCreateModal />
-      </div>
-
       <div className="bg-white mx-auto p-6 bg-white">
         <Table>
           <thead>
             <tr>
               <THead title="id" />
-              <THead title="email" />
+              {showDatePeriod ? null : <THead title="email" />}
               <THead title="password" />
               {showDatePeriod ? <THead title="Reservation period" /> : null}
               {showDatePeriod ? null : <THead title="role" />}
@@ -40,8 +32,8 @@ function UserList({ users }: UserListProps) {
             </tr>
           </thead>
           <tbody>
-            {users.map((user: IUser) => (
-              <User user={user} key={user.id} />
+            {users.map((user: IUser, i) => (
+              <User user={user} key={`${user.id}-${i}`} />
             ))}
           </tbody>
         </Table>

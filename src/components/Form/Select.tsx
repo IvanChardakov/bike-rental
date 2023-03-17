@@ -32,9 +32,7 @@ function Select({
         {...register(name, { ...validation })}
         {...rest}
       >
-        <option disabled selected>
-          -- select an option --
-        </option>
+        <option selected>-- select an option --</option>
         {options.map((o, i) => {
           if (renderCustomOptions) {
             return renderCustomOptions(o, i);

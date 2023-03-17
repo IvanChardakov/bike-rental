@@ -54,7 +54,7 @@ function User({ user }: { user: UserWithDates }) {
     <tr>
       <TData data={user.id} />
       <TData data={user.email} />
-      <TData data={'*'.repeat(user.password.length)} />
+      {showDatePeriod ? null : <TData data={'*'.repeat(user.password.length)} />}
       {showDatePeriod ? (
         <TData
           data={

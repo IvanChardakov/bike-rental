@@ -54,7 +54,11 @@ const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
 
     if (fromDate && toDate) {
       const rangeAvailable = !reservations.find((reservation) => {
-        return new Date(reservation.fromDate) <= toDate && new Date(reservation.toDate) >= fromDate;
+        return (
+          new Date(reservation.fromDate) <= toDate &&
+          new Date(reservation.toDate) >= fromDate &&
+          !reservation.isCancelled
+        );
       });
       if (!rangeAvailable) {
         return false;
@@ -67,7 +71,8 @@ const BikeManagerProvider = ({ children }: { children: React.ReactNode }) => {
       const selectedDateAvailable = !reservations.find((reservation) => {
         return (
           new Date(reservation.fromDate) <= selectedDate &&
-          new Date(reservation.toDate) >= selectedDate
+          new Date(reservation.toDate) >= selectedDate &&
+          !reservation.isCancelled
         );
       });
       if (!selectedDateAvailable) {
